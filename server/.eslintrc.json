@@ -1,0 +1,51 @@
+{
+  "rules": {
+    "quotes": [2, "single"],
+    "linebreak-style": 2,
+    "semi": [2, "always"],
+    "no-unused-vars": ["error"],
+    "function-paren-newline": 0,
+    "no-param-reassign": 0,
+    "no-shadow": 0,
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": false
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 80
+      }
+    ],
+    "indent": ["error", 2],
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
+      }
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": true,
+        "classes": true,
+        "variables": true,
+        "allowNamedExports": false
+      }
+    ]
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "extends": "eslint:recommended",
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false
+  }
+}
