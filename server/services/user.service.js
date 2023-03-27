@@ -19,7 +19,7 @@ const findOneById = async (id) => {
   }
 };
 
-const followUser = async (id, userId) => {
+const follow = async (id, userId) => {
   try {
     const user = await userModel.findOneById(id);
     await user.follow(userId);
@@ -30,7 +30,7 @@ const followUser = async (id, userId) => {
   }
 };
 
-const getUserProfile = async (id) => {
+const getProfile = async (id) => {
   try {
     const user = await userModel.findOneById(id);
     const users = await userModel.find({ following: id });
@@ -49,6 +49,6 @@ const getUserProfile = async (id) => {
 module.exports = {
   save,
   findOneById,
-  followUser,
-  getUserProfile
+  follow,
+  getProfile
 };
