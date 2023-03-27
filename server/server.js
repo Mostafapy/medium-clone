@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const cloudinary = require('cloudinary');
 // DB
 const dbConfig = require('./config/db');
+const { routes } = require('./routes');
 
 /** configure cloudinary */
 cloudinary.config({
@@ -42,6 +43,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // Port
 const port = process.env.PORT || '5000';
+
+// routes
+app.use(routes);
 
 // Listen
 const server = app.listen(port, () =>
