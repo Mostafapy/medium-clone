@@ -1,10 +1,10 @@
 const articleModel = require('../models/article.model');
 const userModel = require('../models/user.model');
 
-const create = async (newUserData) => {
+const save = async (newUserData) => {
   try {
     const newUser = await new userModel(newUserData).save();
-    return Promise.resolve(newUser? newUser : 400);
+    return Promise.resolve(newUser);
   } catch (err) {
     return Promise.reject(err);
   }
@@ -47,7 +47,7 @@ const getUserProfile = async (id) => {
 };
 
 module.exports = {
-  create,
+  save,
   findOneById,
   followUser,
   getUserProfile
