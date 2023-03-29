@@ -7,7 +7,7 @@ const apiRouter = require('express').Router();
 // Routes
 routes.use('/api/v1', apiRouter);
 
-apiRouter.use('/user', userRoutes);
-apiRouter.use('/article', articleRoutes);
+apiRouter.use('/users', userRoutes);
+apiRouter.use('/articles', articleRoutes);
 
 module.exports = { routes };

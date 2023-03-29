@@ -22,7 +22,7 @@ export function loadArticles() {
 }
 export function getUser(_id) {
   return axios
-    .get(`${url}user/${_id}`)
+    .get(`${url}users/${_id}`)
     .then((res) => {
       return res.data;
     })
@@ -32,7 +32,7 @@ export function getUser(_id) {
 export function getUserProfile(_id) {
   return (dispatch) => {
     axios
-      .get(`${url}user/profile/${_id}`)
+      .get(`${url}users/profile/${_id}`)
       .then((res) => {
         let profile = res.data;
         dispatch({ type: "SET_PROFILE", profile });
@@ -44,7 +44,7 @@ export function getUserProfile(_id) {
 export function getArticle(article_id) {
   return (dispatch) => {
     axios
-      .get(`${url}article/${article_id}`)
+      .get(`${url}articles/${article_id}`)
       .then((res) => {
         let article = res.data;
         dispatch({ type: "VIEW_ARTICLE", article });
@@ -61,7 +61,7 @@ export function clap(article_id) {
   return (dispatch) => {
     console.log("clapping...");
     axios
-      .post(`${url}article/clap`, { article_id })
+      .post(`${url}articles/clap`, { article_id })
       .then((res) => {
         dispatch({ type: "CLAP_ARTICLE" });
       })
@@ -73,7 +73,7 @@ export function follow(id, user_id) {
   console.log(`${id} following ${user_id}`);
   return (dispatch) => {
     axios
-      .post(`${url}user/follow`, { id, user_id })
+      .post(`${url}users/follow`, { id, user_id })
       .then((res) => {
         dispatch({ type: "FOLLOW_USER", user_id });
       })
@@ -85,7 +85,7 @@ export function SignInUser(user_data) {
   return (dispatch) => {
     console.log("adding us..");
     axios
-      .post(`${url}user`, user_data)
+      .post(`${url}users`, user_data)
       .then((res) => {
         let user = res.data;
         console.log("==================signin=======");
