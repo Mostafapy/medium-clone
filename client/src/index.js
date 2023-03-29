@@ -1,17 +1,43 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+import React from "react";
+import ReactDOM from "react-dom";
+import "./assets/medium.css";
+import { Provider } from "react-redux";
+
+import { Switch, Route } from "react-router-dom";
+//import { ConnectedRouter } from 'react-router-redux'; ==> OLD
+import { ConnectedRouter } from "connected-react-router";
+
+import App from "./App.js";
+import registerServiceWorker from "./registerServiceWorker";
+
+import configureStore, { history } from "./redux/store";
+
+import { getUser } from "./redux/actions/actions";
+
+const store = configureStore();
+
+if (localStorage.Auth) {
+  console.log("first dispatch");
+  //console.log(localStorage.Auth)
+  // update localstorage
+  store.dispatch({ type: "SET_USER", user: JSON.parse(localStorage.Auth) });
+
+  var _id = JSON.parse(localStorage.Auth)._id;
+  getUser(_id).then((res) => {
+    //console.log(JSON.parse(res))
+    store.dispatch({ type: "SET_USER", user: res });
+  });
+}
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById("root")
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+registerServiceWorker();
